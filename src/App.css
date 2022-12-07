@@ -40,3 +40,13 @@
   width: 50%;
   cursor: pointer;
 }
+.img-div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.img-div img{
+  width: 500px;
+
+}
