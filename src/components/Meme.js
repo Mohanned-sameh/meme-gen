@@ -1,25 +1,50 @@
 import React , {useState} from "react";
 import memesData from '../memesData'
+
 function Meme() {
-    const [image, setimage] = useState("");
+
+    const [meme, setMeme] = useState({
+        topText: "",
+        bottomText: "",
+        randomImage: ""
+    });
+    const [allMemeImages , setAllMemesImages] = useState(memesData);
 
     function getMemeImage() {
-        const memesArray = memesData.data.memes
+        const memesArray = allMemeImages.data.memes
         const randomNumber = Math.floor(Math.random() * memesArray.length)
         const url = memesArray[randomNumber].url
-        setimage(prevImage => url)
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImage: url
+        }))
     }
     return(
-        <div className="form">
-            <form className="memeform">
-                <input type="text" placeholder="topText" id="topText"/>
-                <input type="text" placeholder="bottomText" id="bottomText"/>
-            </form>
-                <button type="submit" className="submitmeme" onClick={getMemeImage}>Get a new meme image</button>
-                <div className="img-div">
-                    <img src={image}/>
-                </div>
-        </div>
+        <main>
+            <div className="form">
+                <input 
+                    type="text"
+                    placeholder="Top text"
+                    className="form--input"
+                />
+                <input 
+                    type="text"
+                    placeholder="Bottom text"
+                    className="form--input"
+                />
+                <button 
+                    className="form--button"
+                    onClick={getMemeImage}
+                >
+                    Get a new meme image 🖼
+                </button>
+            </div>
+            <div className="meme">
+                <img src={meme.randomImage} className="meme--image" />
+                <h2 className="meme--text top">One does not simply</h2>
+                <h2 className="meme--text bottom">Walk into Mordor</h2>
+            </div>
+        </main>
     )
 }
 
