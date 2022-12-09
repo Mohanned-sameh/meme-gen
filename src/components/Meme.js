@@ -14,6 +14,12 @@ function Meme() {
         fetch("https://api.imgflip.com/get_memes")
         .then(res => res.json())
         .then(data => setAllMemes(data.data.memes))
+        // async function getMemes() {
+        //     await res = fetch("https://api.imgflip.com/get_memes")
+        //     await data = res.json()
+        //     setAllMemes(data.data.memes)
+        // };
+
     }, [])
 
     function getMemeImage() {
